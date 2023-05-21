@@ -1,11 +1,11 @@
 //^ downloads the files
-const express = require('express');
-const cookieParser = require('cookie-parser');
+import * as express from 'express';
+import * as cookieParser from 'cookie-parser';
 const hbs = require('express-handlebars');
-const {HomeRouter} = require("./routes/home");
-const {configuratorRouter} = require("./routes/configurator");
-const {orderRouter} = require("./routes/order");
-const {handlebarsHelpers} = require("./utils/handlerbars-helpers");
+import {HomeRouter} from "./routes/home";
+import {configuratorRouter} from "./routes/configurator";
+import {orderRouter} from "./routes/order";
+import {handlebarsHelpers} from "./utils/handlerbars-helpers";
 console.log("Running... for cookies!");
 
 //run server
