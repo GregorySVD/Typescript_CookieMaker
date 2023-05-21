@@ -1,5 +1,4 @@
 //simple database
-
 // bases data base
 export const COOKIE_BASES = {
     light: 5,

@@ -1,5 +1,8 @@
-const handlebarsHelpers = {
-    findPrice: (entries, selectedItem) => {
+//entries = Array of arrays
+type Entries = [string, number][];
+
+export const handlebarsHelpers = {
+    findPrice: (entries: Entries, selectedItem: string): number => {
 
         const found = entries.find(el => el[0] === selectedItem);
 
@@ -10,12 +13,13 @@ const handlebarsHelpers = {
         return price;
     },
 
-    pricify: price => price.toFixed(2),
+    pricify: (price: number): string=> price.toFixed(2),
 
-    isNotOnArray: (array, element) => !array.includes(element),
-    isInArray: (array, element) => array.includes(element),
+    isNotOnArray: <T>(array: T[], element: T):boolean => !array.includes(element),
+    //generic type <T> = something of type T needs to be returned as same type
+    isInArray: <T>(array: T[], element: T): boolean => array.includes(element),
 };
+// isInArray([1,2,3], 2); good use of generic type
+isInArray([1,2,3], 'yes');  // ERROR
 
-module.exports = {
-    handlebarsHelpers,
-}
+const {isInArray} = handlebarsHelpers;
