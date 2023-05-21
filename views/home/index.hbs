@@ -1,0 +1,28 @@
+<h1 class="headers">Chose your cookie!</h1>
+
+<h2 class="headers">Please select cookie base :)</h2>
+
+
+
+{{> base-selector}}
+
+<h2 class="headers">Please select addons for your cookie:). Mind you can add more then on of those!</h2>
+
+{{#each allAddons}}
+        <a href="/configurator/add-addon/{{this.[0]}}" class='btn {{#if (isInArray @root.cookie.addons this.[0])
+        }}btn-disabled{{/if}}'>Add {{this.[0]}} for {{this.[1]}} PLN</a>
+
+{{/each}}
+
+{{#if cookie.base}}
+    {{> cookie-preview }}
+    {{> addons}}
+    <hr>
+    <a href="/order/summary" class="btn btn-order"><img  alt="Summary Button" src="/assets/images/shopingCartpng.png"
+                                                            class="cartImg">Order
+        now!</a>
+{{else}}
+    <p><strong>Please select the base of your cookie! </strong>
+        {{> base-selector}}
+    </p>
+{{/if}}

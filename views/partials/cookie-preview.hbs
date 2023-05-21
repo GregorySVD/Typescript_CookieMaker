@@ -1,0 +1,10 @@
+<h1>Your cookie looks delicious</h1>
+<hr>
+<!--// #with oznacza ze bedziemy pracowac z cookie-->
+<!--Addony dodajemy za pomoca petli po tablicy, aby dodac tablice stosujemy #each oraz przypisujemy konkretna wartosc przez THIS-->
+{{#with cookie}}
+    <div class="cookie-preview" style="background:
+        {{#each addons}}url('/assets/images/{{this}}.png'),{{/each}}
+  url('/assets/images/empty-{{base}}.png')"></div> <!--//styl liniowy uzywamy przy generowaniu dynamicznym-->
+{{/with}}
+<hr>
