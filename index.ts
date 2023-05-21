@@ -2,16 +2,20 @@
 import * as express from 'express';
 import * as cookieParser from 'cookie-parser';
 import * as hbs from 'express-handlebars';
+//import single module from express;
+import {json, static as expressStatic} from "express";
 import {HomeRouter} from "./routes/home";
 import {configuratorRouter} from "./routes/configurator";
 import {orderRouter} from "./routes/order";
 import {handlebarsHelpers} from "./utils/handlerbars-helpers";
+
 console.log("Running... for cookies!");
 
 //run server
 
-class CookieMakerApp {
+export class CookieMakerApp {
     constructor() {
+        this._loadData();
         this._configureApp();
         this._run();
         this._setRoutes();
@@ -19,9 +23,9 @@ class CookieMakerApp {
     _configureApp() {
         this.app = express();
 
-        this.app.use(express.static('public'));
+        this.app.use(expressStatic('public'));
         this.app.use(cookieParser());
-        this.app.use(express.json());
+        this.app.use(json());
 
         this.app.engine('.hbs', hbs.engine({
             extname: '.hbs',

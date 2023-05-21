@@ -3,7 +3,8 @@ const express = require('express');
 const {getCookiesSettings} = require("../utils/get-cookies-settings");
 
 class HomeRouter {
-    constructor() {
+    constructor(cmapp) {
+        this.cmapp = cmapp;
         this.router = express.Router();
         this.setUpRoutes();
     }
