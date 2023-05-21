@@ -1,7 +1,7 @@
 //^ downloads the files
 import * as express from 'express';
 import * as cookieParser from 'cookie-parser';
-const hbs = require('express-handlebars');
+import * as hbs from 'express-handlebars';
 import {HomeRouter} from "./routes/home";
 import {configuratorRouter} from "./routes/configurator";
 import {orderRouter} from "./routes/order";
@@ -9,7 +9,6 @@ import {handlebarsHelpers} from "./utils/handlerbars-helpers";
 console.log("Running... for cookies!");
 
 //run server
-
 
 class CookieMakerApp {
     constructor() {

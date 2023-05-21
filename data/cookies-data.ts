@@ -1,20 +1,15 @@
-//simple data base
+//simple database
 
 // bases data base
-const COOKIE_BASES = {
+export const COOKIE_BASES = {
     light: 5,
     dark: 5,
 };
 // addons data base
-const COOKIE_ADDONS = {
+export const COOKIE_ADDONS = {
     chocolate: 5,
     sprinkles: 3,
     honey: 6,
     cranberries: 4,
     coconut: 10,
 };
-
-module.exports = {
-    COOKIE_BASES,
-    COOKIE_ADDONS,
-}

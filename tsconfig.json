@@ -8,6 +8,7 @@
     "lib" : ["dom", "es6", "dom.iterable"], //environment we are using
     "outDir" : "dist", //directory where we want to transpile files
     "experimentalDecorators": false,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "moduleResolution": "Node" //we will use node module
   }
 }
