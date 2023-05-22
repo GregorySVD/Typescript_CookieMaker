@@ -1,21 +1,23 @@
 import {MyRouter} from "../types/my-router";
-import {Router} from "express";
+import {Request, Response, Router} from "express";
+import {CookieMakerApp} from "../index";
 
 export class OrderRouter implements MyRouter{
     public readonly urlPrefix = '/order';
     public readonly router: Router = Router();
-    constructor(cmapp) {
-        this.cmapp = cmapp;
-        this.router = express.Router();
+
+    constructor(
+        private cmapp: CookieMakerApp,
+        ) {
         this.setUpRoutes();
     }
 
-    setUpRoutes() {
+    private setUpRoutes(): void {
         this.router.get('/summary', this.sumary);
         this.router.get('/thanks', this.thanks);
     }
 
-    sumary = (req, res) => {
+    private sumary = (req: Request, res: Response): void => {
         const {sum, addons, base, allBases, allAddons} = this.cmapp.getCookieSettings(req);
 
         res.render('order/summary', {
@@ -29,7 +31,7 @@ export class OrderRouter implements MyRouter{
         });
     };
 
-    thanks = (req, res) => {
+    thanks = (req: Request, res: Response): void => {
         const {sum} = this.cmapp.getCookieSettings(req);
 
         res

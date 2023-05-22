@@ -15,11 +15,11 @@ export const handlebarsHelpers = {
 
     pricify: (price: number): string=> price.toFixed(2),
 
-    isNotOnArray: <T>(array: T[], element: T):boolean => !array.includes(element),
+    //isNotOnArray: <T>(array: T[], element: T):boolean => !array.includes(element),
     //generic type <T> = something of type T needs to be returned as same type
-    isInArray: <T>(array: T[], element: T): boolean => array.includes(element),
+    isInArray: <T>(array: T[], element: T): boolean => array.indexOf(element) !== -1,
 };
 // isInArray([1,2,3], 2); good use of generic type
-isInArray([1,2,3], 'yes');  // ERROR
+//isInArray([1,2,3], 'yes');  // ERROR
 
-const {isInArray} = handlebarsHelpers;
+//const {isInArray} = handlebarsHelpers;
