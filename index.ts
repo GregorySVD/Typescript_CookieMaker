@@ -5,10 +5,12 @@ import * as hbs from 'express-handlebars';
 //import single module from express;
 import {Request, Response, Application, json, static as expressStatic} from "express";
 import {HomeRouter} from "./routes/home";
-import {configuratorRouter} from "./routes/configurator";
+import {ConfiguratorRouter} from "./routes/configurator";
 import {orderRouter} from "./routes/order";
 import {handlebarsHelpers} from "./utils/handlerbars-helpers";
 import {engine} from "express-handlebars";
+import {Entries} from "./types/entries";
+import {COOKIE_BASES, COOKIE_ADDONS} from "./data/cookies-data";
 
 console.log("Running... for cookies!");
 
@@ -17,10 +19,11 @@ console.log("Running... for cookies!");
 export class CookieMakerApp {
     //type of express application
     private app: Application;
-    private data = {
-        COOKIE_BASE,
+    public readonly data = {
+        COOKIE_BASES,
         COOKIE_ADDONS,
     };
+    private readonly routers = [HomeRouter, ConfiguratorRouter]; //auto-generated routes
     constructor() {
         this._configureApp();
         this._run();
@@ -41,16 +44,18 @@ export class CookieMakerApp {
 
     }
 
-    _setRoutes(): void {
-        this.app.use('/', new HomeRouter(this).router);
-        this.app.use('/configurator', new configuratorRouter(this.router));
-        this.app.use('/order', orderRouter);
-
+    _setRoutes(): void {  //automatically set routes
+        for (const router of this.routers) {
+            this.app.use(router.urlPrefix, new router(this).router)
+        }
+       //  this.app.use(HomeRouter.urlPrefix, new HomeRouter(this).router);
+       //  this.app.use(ConfiguratorRouter.urlPrefix, new ConfiguratorRouter(this).router);
+       // // this.app.use('/order', orderRouter);
     }
 
     _run(): void {
         this.app.listen(3000, 'localhost', () => {
-            console.log('Listeing on http://localhost:3000');
+            console.log('Listening on http://localhost:3000');
         });
     }
     showErrorPage(res: Response, description: string): void {
@@ -70,8 +75,8 @@ export class CookieMakerApp {
         addons: string[], //interface
         base: string | undefined,
         sum: number,
-        allBases: Map<string, number>, //
-        allAddons,
+        allBases: Entries, //Map<string | number> new type only for object where key=string, value= number
+        allAddons: Entries,
 
     } {
         const {cookieBase: base} = req.cookies as {
