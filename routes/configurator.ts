@@ -1,11 +1,10 @@
 import {Router} from "express";
 import{CookieMakerApp} from "../index";
-
 //very important for (req, res) to work
 import {Request, Response} from "express";
 
 export class ConfiguratorRouter {
-    private router: Router = Router();
+    public readonly router: Router = Router();
 
     constructor(
         private cmapp: CookieMakerApp) {
@@ -21,9 +20,9 @@ export class ConfiguratorRouter {
     private selectBase = (req: Request, res: Response) => {
         const {baseName} = req.params;
 
-        if (!this.cmapp.data.COOKIE_BASES[baseName]) {
-            return this.cmapp.showErrorPage(res, `There is no such base as ${baseName}.`);
-        }
+        // if (!this.cmapp.data.COOKIE_BASES[baseName]) {
+        //     return this.cmapp.showErrorPage(res, `There is no such base as ${baseName}.`);
+        // }
 
         res
             .cookie('cookieBase', baseName)
