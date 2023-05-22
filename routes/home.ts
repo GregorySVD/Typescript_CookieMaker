@@ -29,7 +29,3 @@ export class HomeRouter implements MyRouter{
         });
     };
 }
-
-module.exports = {
-    HomeRouter,
-};
