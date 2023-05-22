@@ -2,9 +2,10 @@ import {Router} from "express";
 import{CookieMakerApp} from "../index";
 //very important for (req, res) to work
 import {Request, Response} from "express";
+import {MyRouter} from "../types/my-router";
 
-export class ConfiguratorRouter {
-    static readonly urlPrefix = '/configurator';
+export class ConfiguratorRouter implements MyRouter {
+    public readonly urlPrefix = '/configurator';
     public readonly router: Router = Router();
 
     constructor(

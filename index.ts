@@ -46,7 +46,8 @@ export class CookieMakerApp {
 
     _setRoutes(): void {  //automatically set routes
         for (const router of this.routers) {
-            this.app.use(router.urlPrefix, new router(this).router)
+            const object = new router(this);
+            this.app.use(object.urlPrefix, new router(this).router);
         }
        //  this.app.use(HomeRouter.urlPrefix, new HomeRouter(this).router);
        //  this.app.use(ConfiguratorRouter.urlPrefix, new ConfiguratorRouter(this).router);

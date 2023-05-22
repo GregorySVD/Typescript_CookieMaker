@@ -1,8 +1,9 @@
 import {Request, Response, Router} from "express";
 import {CookieMakerApp} from "../index";
+import {MyRouter} from "../types/my-router";
 
-export class HomeRouter {
-    static readonly urlPrefix = '/';
+export class HomeRouter implements MyRouter{
+    public readonly urlPrefix = '/';
     public readonly router: Router = Router();
 
     constructor(
