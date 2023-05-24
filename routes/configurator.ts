@@ -14,22 +14,22 @@ export class ConfiguratorRouter implements MyRouter {
     }
 
     private setUpRoutes(): void {
-        this.router.get('/select-base/:baseName', this.selectBase);
+        this.router.get('/base-selected/:baseName', this.selectBase);
         this.router.get('/add-addon/:addonName', this.addAddon);
         this.router.get('/delete-addon/:addonName', this.deleteAddon);
     }
 
     private selectBase = (req: Request, res: Response): void => {
+        console.log('selectBase')
         const {baseName} = req.params;
-
+        console.log(baseName)
         if (!(this.cmapp.data.COOKIE_BASES as Record<string,number>)[baseName]) {
             return this.cmapp.showErrorPage(res, `There is no such base as ${baseName}.`);
         }
-
         res
             .cookie('cookieBase', baseName)
-            .render('configurator/base-selected', {
-                baseName,
+            .render('configurator/added', {
+                baseName: baseName,
             });
     };
 
@@ -47,7 +47,7 @@ export class ConfiguratorRouter implements MyRouter {
         }
 
         addons.push(addonName);
-
+        console.log(addonName);
         res
             .cookie('cookieAddons', JSON.stringify(addons))
             .render('configurator/added', {

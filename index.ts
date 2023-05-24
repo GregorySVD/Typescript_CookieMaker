@@ -88,8 +88,8 @@ export class CookieMakerApp {
 
         const addons = this.getAddonsFromReq(req);
 
-        const allBases = Object(this.data.COOKIE_BASES);
-        const allAddons = Object(this.data.COOKIE_ADDONS);
+        const allBases = Object.entries(this.data.COOKIE_BASES);
+        const allAddons = Object.entries(this.data.COOKIE_ADDONS);
 
         const sum = (base ? handlebarsHelpers.findPrice(allBases, base) : 0)
             + addons.reduce((prev, curr) => (
