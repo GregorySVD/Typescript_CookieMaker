@@ -13,8 +13,9 @@ export class HomeRouter implements MyRouter{
     }
 
     private setUpRoutes(): void {
-       this.router.get('/', this.home);
+        console.log(Reflect.get(this, '_restApiCall'));
     }
+
     @rest('get', '/')
     private home = (req: Request, res: Response): void => {
         const {sum, addons, base, allBases, allAddons} = this.cmapp.getCookieSettings(req);
